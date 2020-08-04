@@ -1,0 +1,42 @@
+#spring:
+#  application:
+#    name: todo-tool
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        jdbc.time_zone: UTC
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#  datasource:
+#    url: jdbc:mysql://${RDS_HOSTNAME:192.168.99.100}:${RDS_PORT:3306}/${RDS_DB_NAME:dbase_1}
+#    #    url: jdbc:mysql://${RDS_HOSTNAME:192.168.99.100}:${RDS_PORT:3306}/todo-tool?useSSL=false&useUnicode=yes&serverTimezone=UTC&useLegacyDatetimeCode=false
+#    username: ${RDS_USERNAME:duser_1}
+#    password: ${RDS_PASSWORD:dpassword_1}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  output:
+#    ansi:
+#      enabled: always
+#  h2:
+#    console:
+#      enabled: true
+#
+spring:
+  application:
+    name: todo-tool
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}?autoReconnect=true&serverTimezone=UTC&useLegacyDatetimeCode=false&useUnicode=yes&characterEncoding=UTF-8
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: SELECT 1
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+server:
+  port: ${SERVER_PORT}
